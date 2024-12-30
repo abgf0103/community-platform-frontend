@@ -1,0 +1,29 @@
+@import "./_variables.css"; /* _variables.css 파일을 임포트 */
+
+/* 기본 body 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--color-quaternary);
+    margin: 0;
+    padding: 0;
+}
+
+/* h1, h2 등 기본 색상 설정 */
+h1,
+h2,
+h3 {
+    color: var(--color-primary);
+}
+
+/* 버튼 스타일 */
+button {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: var(--color-secondary);
+}

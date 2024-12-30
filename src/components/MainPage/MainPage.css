@@ -1,0 +1,13 @@
+/* MainPage 스타일 */
+.post-card {
+    margin-bottom: 20px;
+}
+
+.card-img-top {
+    height: 80px;
+    object-fit: cover;
+}
+
+.post-title {
+    margin-top: 15px;
+}
