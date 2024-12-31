@@ -9,10 +9,6 @@ function Header() {
         navigate("/");
     };
 
-    const handleLoginClick = () => {
-        navigate("/login"); // 로그인 버튼 클릭 시 /login 경로로 이동
-    };
-
     return (
         <header className="header">
             <h1 className="platform-name" onClick={handleHomeClick}>
@@ -25,9 +21,6 @@ function Header() {
                     placeholder="검색..."
                 />
             </div>
-            <button className="login-btn-header" onClick={handleLoginClick}>
-                로그인
-            </button>
         </header>
     );
 }

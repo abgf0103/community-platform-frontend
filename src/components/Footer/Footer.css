@@ -1,8 +1,6 @@
 /* Footer 스타일 */
 .footer {
     text-align: center;
-    background-color: var(--color-primary);
-    color: var(--color-tertiary);
     padding: 10px;
     position: relative;
     bottom: 0;
