@@ -36,12 +36,23 @@ function MainPage() {
                         </Card>
                     </Col>
                     <Col md={3}>
-                        <button
-                            className="goto-login-btn"
-                            onClick={handleLoginClick}
-                        >
-                            HARU 로그인
-                        </button>
+                        <Row>
+                            <button
+                                className="goto-login-btn"
+                                onClick={handleLoginClick}
+                            >
+                                HARU 로그인
+                            </button>
+                        </Row>
+                        <Row>
+                            <Card>
+                                <Card.Body className="post-title">
+                                    <Card.Title>오늘의 날씨</Card.Title>
+                                    <div className="weather-icon">아이콘</div>
+                                    10°C (22°F)
+                                </Card.Body>
+                            </Card>
+                        </Row>
                     </Col>
                 </Row>
             </Container>
