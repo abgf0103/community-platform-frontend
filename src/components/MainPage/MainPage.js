@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import "./MainPage.css";
 import { useNavigate } from "react-router-dom";
+import Weather from "./Weather";
 
 function MainPage() {
     const navigate = useNavigate(); // 네비게이션 훅을 초기화합니다.
@@ -13,6 +14,27 @@ function MainPage() {
     const handlePostClick = () => {
         navigate("/post"); // 로그인 버튼 클릭 시 /login 경로로 이동
     };
+
+    //const API_KEY = "d0089c9f48bab0ba5e08f6088fdec4f0";
+    // const getWeather = (lat, lon) => {
+    //     fetch(
+    //         `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=kr`
+    //     )
+    //         .then((res) => {
+    //             return res.json();
+    //         })
+    //         .then((json) => {
+    //             console.log(json.main.temp);
+    //             console.log(json.weather[0].description);
+    //             const icon = json.weather[0].icon;
+    //             const iconUrl = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+
+    //             iconSection.setAttribute("src", iconUrl);
+    //         });
+    // };
+
+    // //Seoul weather
+    // getWeather(37.5642, 127.0016);
 
     return (
         <div>
@@ -47,9 +69,7 @@ function MainPage() {
                         <Row>
                             <Card>
                                 <Card.Body className="post-title">
-                                    <Card.Title>오늘의 날씨</Card.Title>
-                                    <div className="weather-icon">아이콘</div>
-                                    10°C (22°F)
+                                    <Weather />
                                 </Card.Body>
                             </Card>
                         </Row>
