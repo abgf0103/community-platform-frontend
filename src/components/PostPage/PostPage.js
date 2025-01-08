@@ -1,20 +1,49 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaUser, FaCalendarAlt, FaComment } from "react-icons/fa"; // 아이콘을 사용
 import "./PostPage.css";
+import instance from "../../api/instance";
 
 const PostPage = () => {
-    const [likes, setLikes] = useState(0); // 좋아요 수 상태 관리
-    const [dislikes, setDislikes] = useState(0); // 싫어요 수 상태 관리
     const [comments, setComments] = useState([]); // 댓글 배열 상태
     const [commentText, setCommentText] = useState(""); // 댓글 입력 텍스트 상태
 
-    const handleLike = () => {
-        setLikes(likes + 1); // 좋아요 클릭 시 좋아요 수 증가
+    const [post, setPost] = useState(null);
+
+    const [nickname, setNickname] = useState("");
+
+    const getNickname = () => {
+        instance.get(`/member/getNickname?memberID=${authorID}`).then((res) => {
+            console.log(res);
+            //setNickname
+        });
     };
 
-    const handleDislike = () => {
-        setDislikes(dislikes + 1); // 싫어요 클릭 시 싫어요 수 증가
-    };
+    useEffect(() => {
+        // 로컬 스토리지에서 데이터 불러오기
+        const storedPost = localStorage.getItem("currentPost");
+        if (storedPost) {
+            setPost(JSON.parse(storedPost));
+        }
+        getNickname();
+    }, []);
+
+    if (!post) {
+        return <div>게시글을 불러오는 중...</div>;
+    }
+
+    const {
+        postID,
+        title,
+        content,
+        authorID,
+        createdAt,
+        updatedAt,
+        likes,
+        dislikes,
+        status,
+    } = post;
+
+    console.log(authorID);
 
     const handleCommentChange = (e) => {
         setCommentText(e.target.value); // 댓글 입력 텍스트 상태 업데이트
@@ -35,11 +64,11 @@ const PostPage = () => {
     return (
         <div className="post-page">
             <div className="post-header">
-                <h1 className="post-title">게시글 제목</h1>
+                <h1 className="post-title">{title}</h1>
                 <div className="post-info">
                     <div className="post-author">
                         <FaUser className="icon" />
-                        <span>작성자: 홍길동</span>
+                        <span>{nickname}</span>
                     </div>
                     <div className="post-time">
                         <FaCalendarAlt className="icon" />
@@ -56,12 +85,8 @@ const PostPage = () => {
             </div>
 
             <div className="reaction-buttons">
-                <button className="like-button" onClick={handleLike}>
-                    좋아요 {likes}
-                </button>
-                <button className="dislike-button" onClick={handleDislike}>
-                    싫어요 {dislikes}
-                </button>
+                <button className="like-button">좋아요 {likes}</button>
+                <button className="dislike-button">싫어요 {dislikes}</button>
             </div>
 
             {/* 댓글 작성란 */}

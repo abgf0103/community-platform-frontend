@@ -4,11 +4,6 @@
     justify-content: center;
     align-items: center;
     height: 87vh;
-    background: linear-gradient(
-        to right,
-        var(--color-tertiary),
-        var(--color-quaternary)
-    ); /* 그라디언트 배경 */
 }
 
 /* 로그인 박스 스타일 */
@@ -67,7 +62,7 @@
     width: 100%;
     padding: 12px 0;
     font-size: 1.1rem;
-    background-color: var(--color-tertiary);
+    background-color: rgb(255, 255, 255);
     border: none;
     border-radius: 30px;
     color: var(--color-secondary);
@@ -76,5 +71,5 @@
 }
 
 .login-btn:hover {
-    background-color: var(--color-tertiary-hover);
+    background-color: rgb(216, 216, 216);
 }

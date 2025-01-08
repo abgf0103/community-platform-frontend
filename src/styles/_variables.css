@@ -2,8 +2,8 @@
 
 /* 색상 변수 */
 :root {
-    --color-primary: #800000; /* 메인 색상 */
-    --color-secondary: #982b1c; /* 서브 색상 */
+    --color-primary: #00a9dd; /* 메인 색상 */
+    --color-secondary: #1c6698; /* 서브 색상 */
     --color-tertiary: #dad4b5; /* 보조 색상 */
     --color-tertiary-hover: #b6af8e; /* 보조 색상 hover*/
     --color-quaternary: #f2e8c6; /* 배경 색상 */
