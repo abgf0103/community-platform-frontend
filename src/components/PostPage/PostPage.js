@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { FaUser, FaCalendarAlt, FaComment } from "react-icons/fa"; // 아이콘을 사용
+import { FaUser, FaCalendarAlt } from "react-icons/fa";
+import { BiLike, BiDislike } from "react-icons/bi";
 import "./PostPage.css";
 import instance from "../../api/instance";
+import { writeTime } from "../../utills/formatters";
 
 const PostPage = () => {
     const [comments, setComments] = useState([]); // 댓글 배열 상태
@@ -11,39 +13,25 @@ const PostPage = () => {
 
     const [nickname, setNickname] = useState("");
 
-    const getNickname = () => {
-        instance.get(`/member/getNickname?memberID=${authorID}`).then((res) => {
-            console.log(res);
-            //setNickname
-        });
-    };
-
     useEffect(() => {
         // 로컬 스토리지에서 데이터 불러오기
         const storedPost = localStorage.getItem("currentPost");
         if (storedPost) {
             setPost(JSON.parse(storedPost));
         }
-        getNickname();
     }, []);
+
+    const getNickname = () => {
+        instance
+            .get(`/member/getNickname?memberID=${post.authorID}`)
+            .then((res) => {
+                setNickname(res.data);
+            });
+    };
 
     if (!post) {
         return <div>게시글을 불러오는 중...</div>;
     }
-
-    const {
-        postID,
-        title,
-        content,
-        authorID,
-        createdAt,
-        updatedAt,
-        likes,
-        dislikes,
-        status,
-    } = post;
-
-    console.log(authorID);
 
     const handleCommentChange = (e) => {
         setCommentText(e.target.value); // 댓글 입력 텍스트 상태 업데이트
@@ -60,33 +48,35 @@ const PostPage = () => {
             setCommentText(""); // 댓글 작성 후 텍스트 초기화
         }
     };
+    getNickname();
 
     return (
         <div className="post-page">
             <div className="post-header">
-                <h1 className="post-title">{title}</h1>
+                <h1 className="post-title">{post.title}</h1>
                 <div className="post-info">
                     <div className="post-author">
                         <FaUser className="icon" />
-                        <span>{nickname}</span>
+                        <span>작성자 : {nickname}</span>
                     </div>
                     <div className="post-time">
                         <FaCalendarAlt className="icon" />
-                        <span>작성 시간: 2024-12-30 12:00</span>
+                        <span>작성일 : {writeTime(post.createdAt)}</span>
                     </div>
                 </div>
             </div>
 
             <div className="post-content">
-                <p>
-                    여기에 게시글 내용이 들어갑니다. 이 부분은 길어질 수
-                    있습니다.
-                </p>
+                <p>{post.content}</p>
             </div>
 
             <div className="reaction-buttons">
-                <button className="like-button">좋아요 {likes}</button>
-                <button className="dislike-button">싫어요 {dislikes}</button>
+                <button className="like-button">
+                    <BiLike className="icon" />
+                </button>
+                <button className="dislike-button">
+                    <BiDislike className="icon" />
+                </button>
             </div>
 
             {/* 댓글 작성란 */}

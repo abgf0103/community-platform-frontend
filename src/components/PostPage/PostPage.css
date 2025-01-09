@@ -9,7 +9,7 @@
 }
 
 .post-header {
-    background-color: #800000; /* 제목 영역의 배경색 */
+    background-color: var(--color-secondary); /* 제목 영역의 배경색 */
     color: white;
     padding: 15px; /* 제목 박스의 크기를 줄임 */
     border-radius: 8px;
@@ -49,6 +49,8 @@
 .reaction-buttons {
     display: flex;
     gap: 10px;
+    justify-content: center;
+    margin-top: 50px;
 }
 
 .like-button,
