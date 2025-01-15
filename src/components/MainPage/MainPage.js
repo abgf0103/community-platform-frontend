@@ -14,6 +14,10 @@ function MainPage() {
         navigate("/login"); // 로그인 버튼 클릭 시 /login 경로로 이동
     };
 
+    const handleSignUpClick = () => {
+        navigate("/signup");
+    };
+
     useEffect(() => {
         instance
             .get("/post/list")
@@ -71,6 +75,9 @@ function MainPage() {
                                 HARU 로그인
                             </button>
                         </Row>
+                        <p className="sign-up-text" onClick={handleSignUpClick}>
+                            회원가입
+                        </p>
                         <Row>
                             <Card>
                                 <Card.Body className="post-title">
