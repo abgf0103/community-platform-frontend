@@ -17,10 +17,6 @@
     transition: transform 0.3s ease-in-out;
 }
 
-.login-box:hover {
-    transform: translateY(-10px); /* 마우스 오버시 살짝 위로 올라가는 효과 */
-}
-
 /* 로그인 제목 스타일 */
 .login-title {
     text-align: center;
